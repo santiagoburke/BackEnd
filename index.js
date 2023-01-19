@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs'
 
 class ProductManager {
     constructor() {
@@ -21,9 +21,10 @@ class ProductManager {
         }
     }
 
-    async addProducts(title, description, price, thumbnail, code, stock) {
+    async addProducts(producto) {
+        const product = {title, description, price, thumbnail, code, stock}
         try {
-            if(!title || !description || !price || !thumbnail || !code || !stock){
+            if(!title || !description || !price || !code || !stock){
                 console.log('Debe ingresar todos los campos')
             } else {
                 const newProduct = {
@@ -126,4 +127,4 @@ async function exec(){
 
 exec()
 
-module.exports = ProductManager;
+export default ProductManager

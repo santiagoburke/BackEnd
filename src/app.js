@@ -1,30 +1,12 @@
-const express = require('express')
-const ProductManager = require('../index')
+import express from 'express'
+import { productRouter } from '../routes/products.router.js'
+import { cartRouter } from '../routes/carts.router.js'
+
 const PORT = 8080
 const app = express()
 
-const productManager = new ProductManager('../archivos/productos.json')
-
-app.get('/products', async (req, res) => {
-    const products = await productManager.getProducts()
-    const { limit } = req.query
-    if (limit) {
-        res.json(products.slice(0, limit))
-    } else {
-        res.json(products)
-    }
-})
-
-app.get('/products/:pid', async (req,res) => {
-    const products = await productManager.getProducts()
-    const { pid } = req.params
-    const productId = products.find(p => p.id === parseInt(pid))
-    if(pid) {
-        res.json(productId)
-    } else {
-        res.send('No existe ningun producto con ese ID')
-    }
-})
+app.use('/api/products', productRouter)
+app.use('/api/carts', cartRouter)
 
 app.listen(PORT, () => {
     console.log(`Escuchando al puerto: ${PORT}`)
