@@ -28,6 +28,7 @@ class CartManager {
             }
         } catch (error) {
             console.log(`Error al obtener el carrito: ${error}`);
+            console.log(error)
             return error;
         }
         
