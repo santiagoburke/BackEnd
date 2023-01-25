@@ -1,92 +1,92 @@
 [
-	{
-		"id": 1,
-		"title": "Dog Black",
-		"description": "Remera Negra",
-		"price": 200,
-		"thumbnail": "...",
-		"code": "DB",
-		"stock": 20
-	},
-	{
-		"id": 2,
-		"title": "Dog White",
-		"description": "Remera Blanca",
-		"price": 200,
-		"thumbnail": "...",
-		"code": "DW",
-		"stock": 20
-	},
-	{
-		"id": 3,
-		"title": "Dog Blue",
-		"description": "Remera Azul",
-		"price": 230,
-		"thumbnail": "...",
-		"code": "DB",
-		"stock": 10
-	},
-	{
-		"id": 4,
-		"title": "Dog Yellow",
-		"description": "Remera Amarilla",
-		"price": 150,
-		"thumbnail": "...",
-		"code": "DY",
-		"stock": 35
-	},
-	{
-		"id": 5,
-		"title": "Dog Be Natural",
-		"description": "Remera Be Natural",
-		"price": 170,
-		"thumbnail": "...",
-		"code": "DBN",
-		"stock": 15
-	},
-	{
-		"id": 6,
-		"title": "Dog Humans",
-		"description": "Remera Humans",
-		"price": 150,
-		"thumbnail": "...",
-		"code": "DH",
-		"stock": 10
-	},
-	{
-		"id": 7,
-		"title": "Dog Loyality",
-		"description": "Remera Loyality",
-		"price": 300,
-		"thumbnail": "...",
-		"code": "DL",
-		"stock": 3
-	},
-	{
-		"id": 8,
-		"title": "Dog Perspective",
-		"description": "Remera Perspective",
-		"price": 200,
-		"thumbnail": "...",
-		"code": "DP",
-		"stock": 150
-	},
-	{
-		"id": 9,
-		"title": "Dog Rose",
-		"description": "Remera Rose",
-		"price": 180,
-		"thumbnail": "...",
-		"code": "DR",
-		"stock": 15
-	},
-	{
-		"id": 10,
-		"title": "Dog Smile",
-		"description": "Remera Smile",
-		"price": 200,
-		"thumbnail": "...",
-		"code": "DS",
-		"stock": 45
-	}
+  {
+    "id": 1,
+    "title": "Dog Black",
+    "description": "Remera Negra",
+    "price": 200,
+    "thumbnail": "...",
+    "code": "DB",
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "title": "Dog White",
+    "description": "Remera Blanca",
+    "price": 200,
+    "thumbnail": "...",
+    "code": "DW",
+    "stock": 20
+  },
+  {
+    "id": 3,
+    "title": "Dog Blue",
+    "description": "Remera Azul",
+    "price": 230,
+    "thumbnail": "...",
+    "code": "DB",
+    "stock": 10
+  },
+  {
+    "id": 4,
+    "title": "Dog Yellow",
+    "description": "Remera Amarilla",
+    "price": 150,
+    "thumbnail": "...",
+    "code": "DY",
+    "stock": 35
+  },
+  {
+    "id": 5,
+    "title": "Dog Be Natural",
+    "description": "Remera Be Natural",
+    "price": 170,
+    "thumbnail": "...",
+    "code": "DBN",
+    "stock": 15
+  },
+  {
+    "id": 6,
+    "title": "Dog Humans",
+    "description": "Remera Humans",
+    "price": 150,
+    "thumbnail": "...",
+    "code": "DH",
+    "stock": 10
+  },
+  {
+    "id": 7,
+    "title": "Dog Loyality",
+    "description": "Remera Loyality",
+    "price": 300,
+    "thumbnail": "...",
+    "code": "DL",
+    "stock": 3
+  },
+  {
+    "id": 8,
+    "title": "Dog Perspective",
+    "description": "Remera Perspective",
+    "price": 200,
+    "thumbnail": "...",
+    "code": "DP",
+    "stock": 150
+  },
+  {
+    "id": 9,
+    "title": "Dog Rose",
+    "description": "Remera Rose",
+    "price": 180,
+    "thumbnail": "...",
+    "code": "DR",
+    "stock": 15
+  },
+  {
+    "id": 10,
+    "title": "Dog Smile",
+    "description": "Remera Smile",
+    "price": 200,
+    "thumbnail": "...",
+    "code": "DS",
+    "stock": 45
+  }
 ]

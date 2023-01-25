@@ -1,11 +1,33 @@
-import { Router } from "express";
-import { cartManager } from "../cart.js";
-const cartRouter = Router();
+import { Router } from 'express'
+import CartManager from '../src/cart.js'
 
-cartRouter.post('/', cartManager.saveCart);                                   
-cartRouter.delete('/:id', cartManager.deleteCart);                                
-cartRouter.get('/:id/productos', cartManager.getProducts);                           
-cartRouter.post('/:id/productos', cartManager.saveProductByID);                         
-cartRouter.delete('/:id/productos/:id_producto', cartManager.deleteCartProductByID);      
+const cartRouter = Router()
+const cartManager = new CartManager('./archivos/carts.json')
 
-export default cartRouter;
+
+cartRouter.get('/', async (req, res) => {
+    const carts = await cartManager.getCarts();
+    res.json({ carts });
+});
+
+cartRouter.get('/:idCart', async (req, res) => {
+    const cart = await cartManager.getCartById(req.params.idCart);
+    res.json({ cart });
+    
+});
+
+cartRouter.post('/', async (req, res) => {
+    const products = await req.body;
+    const newCart = await cartManager.addCart(products);
+    res.json({ message: "Carrito creado", newCart });
+})
+
+cartRouter.post('/:idCart/product/:idProduct', async (req, res) => {
+    const idCart = req.params.idCart;
+    const idProduct = req.params.idProduct;
+    const quantity = req.body.quantity;
+    const newProduct = await cartManager.addProductToCartById(idCart, idProduct, quantity);
+    res.json({ message: "Producto agregado", newProduct });
+});
+
+export default cartRouter
