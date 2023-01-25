@@ -70,6 +70,7 @@ class ProductManager {
             }
         } catch (error) {
             console.log('Producto no encontrado, error')
+            console.log(error)
             return error
         }
     }
@@ -107,6 +108,7 @@ class ProductManager {
             }
         } catch (error) {
             console.log('El producto no pudo ser eliminado')
+            console.log(error)
             return error
         }
     }
