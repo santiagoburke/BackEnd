@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 const express = require('express')
 const ProductManager = require('../index')
 =======
+=======
+>>>>>>> origin/master
 // DEPENDENCIAS E IMPORTACIONES
 import express from 'express'
 import productsRouter from '../routes/products.router.js'
@@ -10,37 +13,49 @@ import viewRouter from '../routes/views.router.js'
 import { __dirname } from '../utils.js'
 import { Server } from 'socket.io'
 import handlebars from 'express-handlebars'
+<<<<<<< HEAD
 import '../dao/models/dbConfig.js'
 
 // APP Y EXPRESS
 const app = express()
 >>>>>>> Stashed changes
 const PORT = 8080
+=======
+
+// APP Y EXPRESS
+>>>>>>> origin/master
 const app = express()
+const PORT = 8080
 
-const productManager = new ProductManager('../archivos/productos.json')
+// MIDDLEWARES
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+// PUBLIC
+app.use(express.static(__dirname + '/public'))
 
-app.get('/products', async (req, res) => {
-    const products = await productManager.getProducts()
-    const { limit } = req.query
-    if (limit) {
-        res.json(products.slice(0, limit))
-    } else {
-        res.json(products)
-    }
+// ROUTES
+app.use('/api/products', productsRouter)
+app.use('/api/cart', cartRouter)
+app.use('/', viewRouter)
+
+// HANDLEBARS
+app.engine('handlebars',handlebars.engine())
+app.set('view engine', 'handlebars')
+app.set('views', __dirname + '/views')
+
+// HTTPSERVER
+const httpServer = app.listen(PORT, () => {
+  console.log(`Escuchando al puerto ${PORT}`)
 })
 
-app.get('/products/:pid', async (req,res) => {
-    const products = await productManager.getProducts()
-    const { pid } = req.params
-    const productId = products.find(p => p.id === parseInt(pid))
-    if(pid) {
-        res.json(productId)
-    } else {
-        res.send('No existe ningun producto con ese ID')
-    }
+// SOCKET
+const socketServer = new Server(httpServer)
+socketServer.on('connection', (socket)=>{
+  console.log('Cliente conectado', socket.id )
+  socket.emit('saludo', 'Conexion realizada con exito')
+  socket.on('disconnect', ()=>{
+    console.log('Cliente desconectado', socket.id)
+  })
 })
 
-app.listen(PORT, () => {
-    console.log(`Escuchando al puerto: ${PORT}`)
-})
+export default socketServer

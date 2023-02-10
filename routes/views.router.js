@@ -1,5 +1,9 @@
 import { Router } from 'express'
+<<<<<<< HEAD
 import ProductManager from '../dao/fileManager/index.js'
+=======
+import ProductManager from '../src/index.js'
+>>>>>>> origin/master
 import socketServer from '../src/app.js'
 
 const viewRouter = Router()

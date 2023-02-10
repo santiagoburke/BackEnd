@@ -1,5 +1,9 @@
 import { Router } from 'express'
+<<<<<<< HEAD
 import ProductManager from '../dao/fileManager/index.js'
+=======
+import ProductManager from '../src/index.js'
+>>>>>>> origin/master
 import { upload } from '../middlewares/multer.js'
 
 const productRouter = Router()
