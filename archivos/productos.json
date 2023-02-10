@@ -88,5 +88,16 @@
     "thumbnail": "...",
     "code": "DS",
     "stock": 45
+  },
+  {
+    "id": 11,
+    "title": "Dog Ke",
+    "description": "Remera Ke",
+    "code": "DK",
+    "price": "250",
+    "stock": "20",
+    "category": "Remera",
+    "thumbnails": [],
+    "status": true
   }
 ]
