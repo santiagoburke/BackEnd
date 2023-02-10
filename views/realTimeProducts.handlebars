@@ -1,0 +1,20 @@
+<div class="cards" id="cards">
+</div>
+<div class="form">
+    <h2>Agregar Producto</h2>
+    <form action="/realTimeProducts" method="post">
+        <div>
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="description" placeholder="Description">
+            <input type="text" name="code" placeholder="Code">
+            <input type="number" name="price" placeholder="Price">
+            <input type="number" name="stock" placeholder="Stock">
+            <input type="text" name="category" placeholder="Category">
+            <input type="text" name="thumbnail" placeholder="Thumbnails">
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="/socket.io/socket.io.js" ></script>
+<script src="index.js"></script>

@@ -1,5 +1,20 @@
+<<<<<<< Updated upstream
 const express = require('express')
 const ProductManager = require('../index')
+=======
+// DEPENDENCIAS E IMPORTACIONES
+import express from 'express'
+import productsRouter from '../routes/products.router.js'
+import cartRouter from '../routes/carts.router.js'
+import viewRouter from '../routes/views.router.js'
+import { __dirname } from '../utils.js'
+import { Server } from 'socket.io'
+import handlebars from 'express-handlebars'
+import '../dao/models/dbConfig.js'
+
+// APP Y EXPRESS
+const app = express()
+>>>>>>> Stashed changes
 const PORT = 8080
 const app = express()
 
