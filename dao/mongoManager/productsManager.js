@@ -2,9 +2,9 @@ import { productsModel } from "../models/products.model.js";
 
 export default class ProductsManager {
 
-    async getProducts() {
+    async getProducts(limit) {
         try {
-            const products = await productsModel.find()
+            const products = await productsModel.find().limit(limit)
             return products
         } catch (error) {
             console.log('Error al obtener los productos', error)

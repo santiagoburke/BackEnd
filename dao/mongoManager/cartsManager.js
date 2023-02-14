@@ -1,6 +1,7 @@
-import { cartsModel } from "../models/carts.model";
+import { cartsModel } from "../models/carts.model.js";
+import { productsModel } from "../models/products.model.js";
 
-export default class CartManager{
+export default class CartsManager{
 
     async getCart(){
         try {
@@ -14,6 +15,10 @@ export default class CartManager{
 
     async addCart(objCart){
         try {
+            const product = await productsModel.findById(objCart.product)
+            if (!product) {
+                console.log('No se encontro el producto')
+            }
             const newCart = new cartsModel(objCart)
             await newCart.save()
             return newCart
@@ -53,4 +58,31 @@ export default class CartManager{
         }
     }
 
+    async addProductToCartById(idCart, idProduct, quantity) {
+        try {
+          const cart = await Cart.findById(idCart);
+          if (!cart) throw new Error('Cart not found');
+      
+          let productIndex = -1;
+          cart.products.forEach((product, index) => {
+            if (product.id.toString() === idProduct) {
+              productIndex = index;
+            }
+          });
+      
+          if (productIndex > -1) {
+            cart.products[productIndex].quantity += quantity;
+          } else {
+            const newProduct = { id: idProduct, quantity };
+            cart.products.push(newProduct);
+          }
+      
+          await cart.save();
+          return cart.products;
+        } catch (error) {
+          console.error(error.message);
+          return error;
+        }
+      }
+      
 }

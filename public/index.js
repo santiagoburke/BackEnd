@@ -1,10 +1,49 @@
-const socketServer = io()
+const socketClient = io()
 const cards = document.getElementById('cards')
+const nombreUsuario = document.getElementById('nombreUsuario')
+const formChat = document.getElementById('form-chat')
+const inputMensaje = document.getElementById('mensaje')
+const chatParrafo = document.getElementById('paragraph-chat')
+let usuario = null
 
-socketServer.on("productos", (prods) => {
+if (!usuario) {
+    Swal.fire({
+        title: 'Bienvenido',
+        text: 'Ingresa tu usuario',
+        input: 'text',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Necesitas ingresar usuario'
+            }
+        }
+    })
+        .then(userName => {
+            usuario = userName.value
+            nombreUsuario.innerText = usuario
+        })
+}
+
+formChat.onsubmit = (e) => {
+    e.preventDefault()
+    const infoUser = {
+        user: usuario,
+        message: inputMensaje.value,
+    }
+    socketClient.emit('mensaje', infoUser)
+    inputMensaje.value = ''
+}
+
+socketClient.on('chat', mensajes => {
+    const htmlRender = mensajes.map(e => {
+        return `<p><strong>${e.user}:</strong>${e.message}</p>`
+    }).join(' ')
+    chatParrafo.innerHTML = htmlRender
+})
+
+socketClient.on("productos", (prods) => {
     cards.innerHTML = "";
     prods.forEach((prod) => {
-      cards.innerHTML += `
+        cards.innerHTML += `
       <div class="card">
           <div class="card-header">
           <h3>${prod.title}</h3>
@@ -27,3 +66,4 @@ socketServer.on("productos", (prods) => {
       </div>`;
     });
 });
+
