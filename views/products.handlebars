@@ -1,0 +1,23 @@
+<!-- Iteramos sobre cada producto y mostramos su información -->
+{{#each products}}
+<div class="product">
+  <h2>{{this.name}}</h2>
+  <img src="{{this.image}}" alt="{{this.name}}">
+  <p>{{this.description}}</p>
+  <p>Precio: {{this.price}}</p>
+  <p>Categoría: {{this.category.name}}</p> <!-- Accedemos a la categoría del producto -->
+  <form action="/api/carts" method="POST">
+    <input type="hidden" name="product" value="{{this._id}}">
+    <button type="submit">Agregar al carrito</button>
+  </form>
+</div>
+{{/each}}
+
+<!-- Agregamos links de paginación -->
+<div class="pagination">
+  {{#if pages}}
+  {{#each pages}}
+  <a href="/products?page={{this}}">{{this}}</a>
+  {{/each}}
+  {{/if}}
+</div>

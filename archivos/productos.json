@@ -6,7 +6,8 @@
     "price": 200,
     "thumbnail": "...",
     "code": "DB",
-    "stock": 20
+    "stock": 20,
+    "category": "Remera"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "price": 200,
     "thumbnail": "...",
     "code": "DW",
-    "stock": 20
+    "stock": 20,
+    "category":"Remera"
   },
   {
     "id": 3,
@@ -23,8 +25,9 @@
     "description": "Remera Azul",
     "price": 230,
     "thumbnail": "...",
-    "code": "DB",
-    "stock": 10
+    "code": "DBL",
+    "stock": 10,
+    "category":"Remera"
   },
   {
     "id": 4,
@@ -33,7 +36,8 @@
     "price": 150,
     "thumbnail": "...",
     "code": "DY",
-    "stock": 35
+    "stock": 35,
+    "category":"Remera"
   },
   {
     "id": 5,
@@ -42,7 +46,8 @@
     "price": 170,
     "thumbnail": "...",
     "code": "DBN",
-    "stock": 15
+    "stock": 15,
+    "category":"Remera"
   },
   {
     "id": 6,
@@ -51,7 +56,8 @@
     "price": 150,
     "thumbnail": "...",
     "code": "DH",
-    "stock": 10
+    "stock": 10,
+    "category":"Remera"
   },
   {
     "id": 7,
@@ -60,7 +66,8 @@
     "price": 300,
     "thumbnail": "...",
     "code": "DL",
-    "stock": 3
+    "stock": 3,
+    "category":"Remera"
   },
   {
     "id": 8,
@@ -69,7 +76,8 @@
     "price": 200,
     "thumbnail": "...",
     "code": "DP",
-    "stock": 150
+    "stock": 150,
+    "category":"Remera"
   },
   {
     "id": 9,
@@ -78,7 +86,8 @@
     "price": 180,
     "thumbnail": "...",
     "code": "DR",
-    "stock": 15
+    "stock": 15,
+    "category":"Remera"
   },
   {
     "id": 10,
@@ -87,7 +96,8 @@
     "price": 200,
     "thumbnail": "...",
     "code": "DS",
-    "stock": 45
+    "stock": 45,
+    "category":"Remera"
   },
   {
     "id": 11,

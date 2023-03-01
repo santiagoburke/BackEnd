@@ -2,6 +2,7 @@ import { Router } from 'express'
 import ProductManager from '../dao/fileManager/index.js'
 import { upload } from '../middlewares/multer.js'
 import ProductsManager from '../dao/mongoManager/productsManager.js'
+import { productsModel } from '../dao/models/products.model.js'
 
 const productRouter = Router()
 const productManager = new ProductManager('./archivos/productos.json')
@@ -9,15 +10,74 @@ const productsManager = new ProductsManager
 
 productRouter.get('/', async (req, res) => {
     try {
-        const { limit } = req.query
-        // const products = await productManager.getProducts(limit || 'max')
-        const products = await productsManager.getProducts(limit)
-        console.log(products)
-        res.json({ products })
+        const { limit = 10, page = 1, category } = req.query;
+        const products = await productManager.getProducts();
+        const infoProducts = await productsModel.paginate({ category }, { limit, page });
+        if (!limit || !page || !category) {
+            res.json(products);
+        } else {
+            if (infoProducts.hasPrevPage === false) {
+                if (infoProducts.hasNextPage === false) {
+                    res.json({
+                        status: 'exitoso',
+                        payload: infoProducts.docs,
+                        totalPages: infoProducts.totalPages,
+                        prevPage: infoProducts.prevPage,
+                        nextPage: infoProducts.nextPage,
+                        page: infoProducts.page,
+                        hasPrevPage: infoProducts.hasPrevPage,
+                        hasNextPage: infoProducts.hasNextPage,
+                        prevLink: null,
+                        nextLink: null
+                    });
+                } else {
+                    res.json({
+                        status: 'exitoso',
+                        payload: infoProducts.docs,
+                        totalPages: infoProducts.totalPages,
+                        prevPage: infoProducts.prevPage,
+                        nextPage: infoProducts.nextPage,
+                        page: infoProducts.page,
+                        hasPrevPage: infoProducts.hasPrevPage,
+                        hasNextPage: infoProducts.hasNextPage,
+                        prevLink: null,
+                        nextLink: `localhost:8080/api/products/?page=${infoProducts.nextPage}`
+                    });
+                }
+            } else {
+                if (infoProducts.hasNextPage === false) {
+                    res.json({
+                        status: 'exitoso',
+                        payload: infoProducts.docs,
+                        totalPages: infoProducts.totalPages,
+                        prevPage: infoProducts.prevPage,
+                        nextPage: infoProducts.nextPage,
+                        page: infoProducts.page,
+                        hasPrevPage: infoProducts.hasPrevPage,
+                        hasNextPage: infoProducts.hasNextPage,
+                        prevLink: `localhost:8080/api/products/?page=${infoProducts.prevPage}`,
+                        nextLink: null
+                    });
+                } else {
+                    res.json({
+                        status: 'exitoso',
+                        payload: infoProducts.docs,
+                        totalPages: infoProducts.totalPages,
+                        prevPage: infoProducts.prevPage,
+                        nextPage: infoProducts.nextPage,
+                        page: infoProducts.page,
+                        hasPrevPage: infoProducts.hasPrevPage,
+                        hasNextPage: infoProducts.hasNextPage,
+                        prevLink: `localhost:8080/api/products/?page=${infoProducts.prevPage}`,
+                        nextLink: `localhost:8080/api/products/?page=${infoProducts.nextPage}`
+                    });
+                }
+            }
+        }
     } catch (error) {
-        res.send(error)
+        console.log(error)
+        res.json({ error, status: 'error' });
     }
-
 })
 
 productRouter.get('/:idProduct', async (req, res) => {

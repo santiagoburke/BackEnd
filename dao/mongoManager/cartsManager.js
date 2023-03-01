@@ -1,9 +1,9 @@
 import { cartsModel } from "../models/carts.model.js";
 import { productsModel } from "../models/products.model.js";
 
-export default class CartsManager{
+export default class CartsManager {
 
-    async getCart(){
+    async getCart() {
         try {
             const carts = await cartsModel.find({})
             return carts
@@ -13,7 +13,7 @@ export default class CartsManager{
         }
     }
 
-    async addCart(objCart){
+    async addCart(objCart) {
         try {
             const product = await productsModel.findById(objCart.product)
             if (!product) {
@@ -28,7 +28,7 @@ export default class CartsManager{
         }
     }
 
-    async getCartById(idCart){
+    async getCartById(idCart) {
         try {
             const carts = await cartsModel.findById(idCart)
             return carts
@@ -38,9 +38,9 @@ export default class CartsManager{
         }
     }
 
-    async updateCart(idCart, updates){
+    async updateCart(idCart, updates) {
         try {
-            const carts = await cartsModel.findByIdAndUpdate(idCart, updates, {new:true})
+            const carts = await cartsModel.findByIdAndUpdate(idCart, updates, { new: true })
             return carts
         } catch (error) {
             console.log('Error al modificar el carrito', error)
@@ -48,7 +48,7 @@ export default class CartsManager{
         }
     }
 
-    async deleteCart(idCart){
+    async deleteCart(idCart) {
         try {
             const carts = await cartsModel.findByIdAndDelete(idCart)
             return carts
@@ -60,29 +60,47 @@ export default class CartsManager{
 
     async addProductToCartById(idCart, idProduct, quantity) {
         try {
-          const cart = await Cart.findById(idCart);
-          if (!cart) throw new Error('Cart not found');
-      
-          let productIndex = -1;
-          cart.products.forEach((product, index) => {
-            if (product.id.toString() === idProduct) {
-              productIndex = index;
+            const cart = await Cart.findById(idCart);
+            if (!cart) throw new Error('Cart not found');
+
+            let productIndex = -1;
+            cart.products.forEach((product, index) => {
+                if (product.id.toString() === idProduct) {
+                    productIndex = index;
+                }
+            });
+
+            if (productIndex > -1) {
+                cart.products[productIndex].quantity += quantity;
+            } else {
+                const newProduct = { id: idProduct, quantity };
+                cart.products.push(newProduct);
             }
-          });
-      
-          if (productIndex > -1) {
-            cart.products[productIndex].quantity += quantity;
-          } else {
-            const newProduct = { id: idProduct, quantity };
-            cart.products.push(newProduct);
-          }
-      
-          await cart.save();
-          return cart.products;
+
+            await cart.save();
+            return cart.products;
         } catch (error) {
-          console.error(error.message);
-          return error;
+            console.error(error.message);
+            return error;
         }
-      }
-      
+    }
+
+    async removeProductFromCartById(idCart, idProduct) {
+        try {
+            const cart = await cartsModel.findById(idCart);
+            if (!cart) throw new Error('Carrito no encontrado');
+
+            cart.products = cart.products.filter((product) => {
+                return product.product.toString() !== idProduct;
+            });
+
+            await cart.save();
+            return cart.products;
+        } catch (error) {
+            console.error(error.message);
+            return error;
+        }
+    }
+
+
 }
