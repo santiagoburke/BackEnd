@@ -65,6 +65,18 @@ viewRouter.get('/realTimeProducts', async (req, res) => {
     }
 })
 
+viewRouter.get('/api/users/register', async(req,res)=>{
+    res.render('register')
+})
+
+viewRouter.get('/api/users/login', async(req,res)=>{
+    res.render('login')
+})
+
+viewRouter.get('/api/users/profile', async(req,res)=>{
+    res.render('profile')
+})
+
 viewRouter.post('/realTimeProducts', async (req, res) => {
     try {
         const { title, description, price, thumbnail, code, stock, category } = req.body

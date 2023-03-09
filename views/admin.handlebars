@@ -1,0 +1,24 @@
+<h2>Bienvenido {{role}}</h2>
+<p>Email: {{email}}</p>
+<button onclick="location.href='/users/logout'">Logout</button>
+
+<h2>PRODUCTOS</h2>
+{{#if products}}
+{{#each products}}
+<div>
+    <img src="{{thumbnail}} alt='Imagen'">
+    <div>
+        <h5>{{title}}</h5>
+        <p>{{description}}</p>
+    </div>
+    <ul>
+        <li>Precio: {{price}}</li>
+        <li>Stock: {{stock}}</li>
+        <li>Categoria: {{category}}</li>
+        <button>Editar Producto</button>
+    </ul>
+</div>
+{{/each}}
+{{else}}
+<h2>Producto no encontrado</h2>
+{{/if}}

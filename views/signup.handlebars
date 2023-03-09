@@ -1,0 +1,12 @@
+<h2>REGISTRO</h2>
+<form action="/api/users/register" method="post">
+    <input type="text" name="first_name" id="first_name" placeholder="Ingrese su nombre">
+    <input type="text" name="last_name" id="last_name" placeholder="Ingrese su apellido">
+    <input type="email" name="femail" id="email" placeholder="Ingrese su correo">
+    <input type="number" name="age" id="age" placeholder="Ingrese su edad">
+    <input type="password" name="password" id="password" placeholder="Ingrese su constraseña">
+    <input type="submit" value="Registrar">
+</form>
+
+<h2>¿Ya tenes una cuenta creada?</h2>
+<button onclick="location.href='/api/users/login'">Iniciar Sesion</button>
