@@ -15,6 +15,7 @@ import cookieParser from 'cookie-parser'
 import sessionRouter from '../routes/sessions.router.js'
 import usersRouter from '../routes/users.router.js'
 import mongoStore from 'express-session'
+import passport from 'passport'
 
 // APP Y EXPRESS
 const app = express()
@@ -38,6 +39,10 @@ app.use(session({
   secret: 'secretKey',
   cookie: {maxAge: 60000}
 }))
+
+//PASSPORT
+app.use(passport.initialize())
+app.use(passport.session())
 
 // PUBLIC
 app.use(express.static(__dirname + '/public'))
