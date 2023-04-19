@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import ProductManager from '../dao/fileManager/index.js'
-import socketServer from '../src/app.js'
+import socketServer from '../app.js'
 import ProductsManager from '../dao/mongoManager/productsManager.js'
 import { productsModel } from '../dao/models/products.model.js'
 import { auth, isLogged, isAdmin } from '../middlewares/auth.js'

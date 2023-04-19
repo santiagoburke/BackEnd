@@ -2,7 +2,13 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-github2";
 import { Strategy as GitHubStrategy } from "passport-github2";
 import { usersModel } from "../dao/models/users.model";
-import { hashPassword, comparePasswords } from "../utils";
+import { hashPassword, comparePasswords, generateToken } from "../../utils";
+import { ExtractJwt, Strategy as jwtStrategy } from "passport-jwt";
+
+const cookieExtractor = (req) => {
+    const token = req?.cookies?.token
+    return token
+}
 
 passport.use('signup', new LocalStrategy({
     usernameField: 'email',
@@ -65,6 +71,18 @@ passport.use('githubSignup', new GitHubStrategy({
         done(err);
     }
 }));
+
+passport.use('current', new jwtStrategy({
+    jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
+    secretOrKey: 'secretJWT'
+}, async (jwtPayload, done) => {
+    console.log('----jwtpayload----', jwtPayload)
+    if (jwtPayload.user) {
+        done(null, jwtPayload.user)
+    } else {
+        done(null, false)
+    }
+}))
 
 
 passport.serializeUser((user, done) => {
