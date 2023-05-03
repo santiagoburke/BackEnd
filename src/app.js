@@ -16,6 +16,8 @@ import sessionRouter from '../routes/sessions.router.js'
 import usersRouter from '../routes/users.router.js'
 import mongoStore from 'express-session'
 import passport from 'passport'
+import mockingRouter from './routes/mocking.router.js'
+import { errorMiddleware } from './utils/errors/errors.middleware.js'
 
 // APP Y EXPRESS
 const app = express()
@@ -37,7 +39,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: 'secretKey',
-  cookie: {maxAge: 60000}
+  cookie: { maxAge: 60000 }
 }))
 
 //PASSPORT
@@ -54,6 +56,10 @@ app.use('/', viewRouter)
 app.use('/chat', chatRouter)
 app.use('/sessions', sessionRouter)
 app.use('/users', usersRouter)
+app.use('/mockingproducts', mockingRouter)
+
+// ERROR MIDDLEWARE
+app.use(errorMiddleware)
 
 // HANDLEBARS
 app.engine('handlebars', handlebars.engine())
@@ -85,7 +91,7 @@ socketServer.on('connection', (socket) => {
         const newMessage = await messagesModel.create(info)
         return newMessage
       } catch (error) {
-        console.error('Error en addMessage: ',error)
+        console.error('Error en addMessage: ', error)
       }
     }
     addMessage()
